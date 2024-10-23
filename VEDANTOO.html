@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Annoying Surprise!</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #f06, #4a90e2);
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            color: #fff;
+            transition: background 0.5s;
+        }
+        h1 {
+            font-size: 4em;
+            text-align: center;
+            animation: neonGlow 1s infinite alternate;
+        }
+        @keyframes neonGlow {
+            from {
+                text-shadow: 0 0 10px #fff, 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff, 0 0 60px #ff00ff, 0 0 70px #ff00ff;
+            }
+            to {
+                text-shadow: 0 0 20px #fff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff, 0 0 60px #ff00ff, 0 0 70px #ff00ff, 0 0 80px #ff00ff;
+            }
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+            transition: transform 0.1s ease-in-out, background-color 0.1s ease-in-out;
+            animation: shake 0.5s infinite;
+        }
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+        .option-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        #message {
+            font-size: 24px;
+            margin-top: 30px;
+            visibility: hidden;
+            animation: fadeIn 2s forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Hey Vedantoo!</h1>
+    <button onclick="showMessage()">Click Me!</button>
+
+    <div id="main-container" class="option-container"></div>
+
+    <script>
+        function showMessage() {
+            const message = document.getElementById('message');
+            message.innerHTML = "Gotcha! 😜";
+            message.style.visibility = 'visible';
+            typeWriter("Surprise! You just got pranked by Rivansharma!", message);
+        }
+
+        function createSubOptions(containerId = 'main-container') {
+            const container = document.getElementById(containerId);
+            const subOptionContainer = document.createElement('div');
+            subOptionContainer.classList.add('option-container');
+            container.appendChild(subOptionContainer);
+
+            const exploreButton = document.createElement('button');
+            exploreButton.textContent = 'Explore More Options';
+            exploreButton.onclick = () => explodeScreen();
+
+            subOptionContainer.appendChild(exploreButton);
+        }
+
+        function typeWriter(text, element) {
+            element.innerHTML = "";
+            element.style.visibility = 'visible';
+            let i = 0;
+            const speed = 100;
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        function playSound() {
+            const audio = new Audio('https://www.soundjay.com/button/button-3.mp3');
+            audio.play();
+        }
+
+        function explodeScreen() {
+            document.body.style.background = '#ff0000';
+            document.body.innerHTML = "<h1>HAHA!</h1>";
+            playSound();
+            setTimeout(() => {
+                document.body.innerHTML = "<h1>The website has exploded!</h1>";
+            }, 2000);
+        }
+
+        document.querySelector("button").onclick = () => {
+            showMessage();
+            createSubOptions();
+            playSound();
+        }
+    </script>
+
+    <p id="message"></p>
+
+</body>
+</html>
